@@ -5,6 +5,7 @@
 # - Resolv.conf points to localhost. What should it be?
 # - Change permissions on the stuff in the bartendro user
 
+apt-get update
 apt-get install -y --no-install-recommends dnsmasq hostapd nginx uwsgi uwsgi-plugin-python \
     python-dev python-smbus
 
