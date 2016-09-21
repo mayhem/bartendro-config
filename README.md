@@ -2,24 +2,22 @@
 
 Deployment script for bartendro. One script should install everything needed.
 
-- Download and write latest Raspian distro to an SD Card
-- Run first use setup (raspi-config):
-        Enable the serial port
-            Expand the filesystem
-            Enable I2C
-        - Then reboot
-
-Then log into the RPi as user 'pi' with password 'raspberry'. Then follow these steps:
+Download and write latest Raspian distro to an SD Card. Boot the RPi and then log in 
+as user 'pi' with password 'raspberry'. Then:
 
 ```
-sudo su - 
-git clone --recursive https://github.com/mayhem/bartendro-config.git
+git clone https://github.com/mayhem/bartendro-config.git
 cd bartendro-config
 sudo sh install.sh
-sudo reboot
 ```
 
-Once done rebooting, log into the RPi with user 'bartendro' and password 'hackme!'. Then
+Next, run raspi-config:
+* Expand the filesystem
+* Advanced: Disable console on serial port
+* Advanced: Enable I2C
+
+Finish raspi-config by allowing it to reboot. Once done rebooting, log into the RPi with 
+user 'bartendro' and password 'hackme!'. Then
 
     sudo rmuser pi
 
