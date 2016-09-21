@@ -1,0 +1,40 @@
+# Listen on all interfaces of eth0
+server {
+     root        /usr/share/nginx/www;
+     server_name bartendro bot.bartendro.com;
+     access_log  /var/log/nginx/bartendro-combined.log combined;
+     error_log   /var/log/nginx/bartendro-error.log notice;
+     location    / {
+       try_files $uri @bartendro;
+     }
+     location @bartendro {
+          include uwsgi_params;
+          uwsgi_pass unix:/tmp/uwsgi.sock;
+     }
+}
+
+# listen on the bartendro private wifi and redirect all traffic to bartendro
+# the server name here is always set the "bartendro".
+server {
+     listen      10.0.0.1:80;
+     root        /usr/share/nginx/www;
+     server_name bartendro bot.bartendro.com;
+     access_log  /var/log/nginx/bartendro-combined.log combined;
+     error_log   /var/log/nginx/bartendro-error.log notice;
+     error_page  404             /404.html;
+     error_page  500 502 503 504 /50x.html;
+     location    / {
+       try_files $uri @bartendro;
+     }
+     location @bartendro {
+          include uwsgi_params;
+          uwsgi_pass unix:/tmp/uwsgi.sock;
+     }
+}
+
+server {
+     listen 10.0.0.1:80 default_server;
+     server_name _;
+     rewrite     ^ http://bot.bartendro.com/? redirect;
+}
+
