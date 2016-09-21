@@ -9,7 +9,6 @@ apt-get update
 apt-get install -y --no-install-recommends dnsmasq hostapd nginx uwsgi uwsgi-plugin-python \
     python-dev python-smbus
 
-pip install -r /home/bartendro/bartendro/ui/requirements.txt
 
 hostname bartendro
 
@@ -38,6 +37,9 @@ if [[ ! -d "/home/bartendro/bartendro" ]]; then
     cp /home/bartendro/bartendro/ui/bartendro.db.default /home/bartendro/bartendro/ui/bartendro.db
     chown -R bartendro:bartendro /home/bartendro
 fi
+
+# Install the needed python modules
+pip install -r /home/bartendro/bartendro/ui/requirements.txt
 
 # configure nginx & uwsgi
 cp -v files/nginx-default /etc/nginx/sites-available/default
