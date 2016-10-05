@@ -39,6 +39,7 @@ fi
 pip install -r /home/bartendro/bartendro/ui/requirements.txt
 
 # configure nginx & uwsgi
+cp -v files/nginx.conf /etc/nginx
 cp -v files/nginx-default /etc/nginx/sites-available/default
 cp -v files/bartendro.ini /etc/uwsgi/apps-available
 ln -fs /etc/uwsgi/apps-available/bartendro.ini /etc/uwsgi/apps-enabled/bartendro.ini 
