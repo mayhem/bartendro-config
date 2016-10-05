@@ -3,7 +3,6 @@
 # TODO:
 # - Redirect all web requests to bartendro interface
 # - Resolv.conf points to localhost. What should it be?
-# - Change permissions on the stuff in the bartendro user
 
 apt-get update
 apt-get install -y --no-install-recommends dnsmasq hostapd nginx uwsgi uwsgi-plugin-python \
@@ -25,11 +24,9 @@ cp -v files/hostname /etc
 cp -v files/sysctl.conf /etc
 
 # create the bartendro user if need be
-if [[ ! -d "/home/bartendro" ]]; then
-    sudo adduser -gecos 'Bartendro' --disabled-password bartendro
-    sudo adduser bartendro sudo 
-    echo 'bartendro:hackme!' | sudo chpasswd
-fi
+sudo adduser -gecos 'Bartendro' --disabled-password bartendro
+sudo adduser bartendro sudo 
+echo 'bartendro:hackme!' | sudo chpasswd
 
 # check out bartendro source
 if [[ ! -d "/home/bartendro/bartendro" ]]; then
@@ -45,3 +42,6 @@ pip install -r /home/bartendro/bartendro/ui/requirements.txt
 cp -v files/nginx-default /etc/nginx/sites-available/default
 cp -v files/bartendro.ini /etc/uwsgi/apps-available
 ln -fs /etc/uwsgi/apps-available/bartendro.ini /etc/uwsgi/apps-enabled/bartendro.ini 
+
+# change the ownership of everything in the bartendro user
+chown -R bartendro:bartendro /home/bartendro
