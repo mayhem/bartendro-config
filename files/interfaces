@@ -3,7 +3,8 @@ source-directory /etc/network/interfaces.d
 auto lo
 iface lo inet loopback
 
-iface eth0 inet manual
+iface eth0 inet dhcp
+  dns-nameservers 8.8.8.8 8.8.4.4
 
 allow-hotplug wlan0
 iface wlan0 inet static

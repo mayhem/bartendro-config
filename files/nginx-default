@@ -1,7 +1,7 @@
 # Listen on all interfaces of eth0
 server {
      root        /usr/share/nginx/www;
-     server_name bartendro bot.bartendro.com;
+     server_name bartendro bartendro.partyrobotics.com;
      access_log  /var/log/nginx/bartendro-combined.log combined;
      error_log   /var/log/nginx/bartendro-error.log notice;
      location    / {
@@ -18,7 +18,7 @@ server {
 server {
      listen      10.0.0.1:80;
      root        /usr/share/nginx/www;
-     server_name bartendro bot.bartendro.com;
+     server_name bartendro bartendro.partyrobotics.com;
      access_log  /var/log/nginx/bartendro-combined.log combined;
      error_log   /var/log/nginx/bartendro-error.log notice;
      error_page  404             /404.html;
@@ -35,6 +35,6 @@ server {
 server {
      listen 10.0.0.1:80 default_server;
      server_name _;
-     rewrite     ^ http://bot.bartendro.com/? redirect;
+     rewrite     ^ http://bartendro.partyrobotics.com/? redirect;
 }
 
