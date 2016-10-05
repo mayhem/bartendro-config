@@ -13,6 +13,7 @@ hostname bartendro
 
 # install the network/wifi setup files
 cp -v files/dnsmasq.conf /etc
+cp -v files/resolvconf.conf /etc
 cp -v files/hostapd.conf /etc/hostapd/hostapd.conf
 cp -v files/hostapd-default /etc/default/hostapd
 cp -v files/hosts /etc/hosts
