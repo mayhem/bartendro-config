@@ -6,7 +6,7 @@
 
 apt-get update
 apt-get install -y --no-install-recommends dnsmasq hostapd nginx uwsgi uwsgi-plugin-python \
-    python-dev python-smbus git-core
+    python-dev python-smbus git-core python-pip
 
 
 hostname bartendro
