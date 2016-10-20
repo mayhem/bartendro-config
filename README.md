@@ -13,12 +13,13 @@ sudo sh install.sh
 
 Next, run raspi-config:
 * Expand the filesystem
+* Startup: Boot into console, require password
 * Advanced: Disable console on serial port
 * Advanced: Enable I2C
 
 Finish raspi-config by allowing it to reboot. Once done rebooting, log into the RPi with 
 user 'bartendro' and password 'hackme!'. Then
 
-    sudo rmuser pi
+    sudo deluser --force --remove-home --remove-all-files pi
 
 In theory that should be it. Your SD card should be ready to rock.
