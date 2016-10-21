@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# TODO:
-# - Redirect all web requests to bartendro interface
-# - Resolv.conf points to localhost. What should it be?
-
 apt-get update
 apt-get install -y --no-install-recommends dnsmasq hostapd nginx uwsgi uwsgi-plugin-python \
     python-dev python-smbus git-core python-pip
@@ -13,6 +9,7 @@ hostname bartendro
 
 # install the network/wifi setup files
 cp -v files/config.txt /boot
+cp -v files/sudoers /etc
 cp -v files/dnsmasq.conf /etc
 cp -v files/dnsmasq /etc
 cp -v files/resolvconf.conf /etc
