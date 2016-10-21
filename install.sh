@@ -12,6 +12,7 @@ apt-get install -y --no-install-recommends dnsmasq hostapd nginx uwsgi uwsgi-plu
 hostname bartendro
 
 # install the network/wifi setup files
+cp -v files/config.txt /boot
 cp -v files/dnsmasq.conf /etc
 cp -v files/dnsmasq /etc
 cp -v files/resolvconf.conf /etc
