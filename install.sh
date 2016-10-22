@@ -29,7 +29,7 @@ sudo adduser bartendro sudo
 echo 'bartendro:hackme!' | sudo chpasswd
 
 # check out bartendro source
-if [[ ! -d "/home/bartendro/bartendro" ]]; then
+if [ ! -d "/home/bartendro/bartendro" ]; then
     git clone https://github.com/partyrobotics/bartendro.git /home/bartendro/bartendro
     cp /home/bartendro/bartendro/ui/bartendro.db.default /home/bartendro/bartendro/ui/bartendro.db
     chown -R bartendro:bartendro /home/bartendro
