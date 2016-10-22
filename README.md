@@ -24,7 +24,7 @@ apt-get update
 apt-get install git
 git clone https://github.com/mayhem/bartendro-config.git
 cd bartendro-config
-sudo sh install.sh
+sudo install.sh
 ```
 
 Once done rebooting, log into the RPi with user 'bartendro' and password 'hackme!'. 
