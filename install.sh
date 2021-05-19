@@ -7,7 +7,7 @@ apt-get install -y --no-install-recommends hostapd isc-dhcp-server iptables-pers
 # install the network/wifi setup files
 cp -v files/dhcpd.conf /etc/dhcp/dhcpd.conf
 cp -v files/isc-dhcp-server /etc/default/isc-dhcp-server
-cp -v files/wlan /etc/networking/interfaces.d
+cp -v files/wlan0 /etc/networking/interfaces.d
 cp -v files/hostapd.conf /etc/hostapd/hostapd.conf
 cp -v files/hostapd /etc/hostapd/hostapd.conf
 cp -v files/dnsmasq.conf /etc/dnsmasq.conf
