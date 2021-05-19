@@ -12,17 +12,22 @@ Boot the RPi and then log in as user 'pi' with password 'raspberry'. Then:
 Run raspi-config:
 * Expand the filesystem
 * Set the hostname to bartendro
-* Set the Wifi Country and give a dummy wifi login
+* Set the Wifi Country and setup Wifi to a valid network
 * Advanced: Disable console on serial port, enable serial port
 * Advanced: Enable I2C
 
 Finish raspi-config by allowing it to reboot. 
 
-Once the RPi comes back up, log in again and follow these steps:
+Once the RPi comes back up: 
+
+   ssh pi@bartendro.local
+
+Log in again and follow these steps:
 
 ```
+sudo su -
 apt-get update
-apt-get install git
+apt-get install -y git
 git clone https://github.com/mayhem/bartendro-config.git
 cd bartendro-config
 sudo install.sh
