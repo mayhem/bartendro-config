@@ -8,7 +8,7 @@ apt-get install -y --no-install-recommends hostapd isc-dhcp-server iptables-pers
 install -m 440 files/sudoers /etc/sudoers.d/90-bartendro
 cp -v files/dhcpd.conf /etc/dhcp/dhcpd.conf
 cp -v files/isc-dhcp-server /etc/default/isc-dhcp-server
-cp -v files/wlan0 /etc/networ/interfaces.d
+cp -v files/wlan0 /etc/network/interfaces.d
 cp -v files/hostapd.conf /etc/hostapd/hostapd.conf
 cp -v files/hostapd /etc/hostapd
 cp -v files/dnsmasq.conf /etc/dnsmasq.conf
