@@ -1,31 +1,34 @@
 #!/bin/bash
 
 apt-get update
-apt-get install -y --no-install-recommends dnsmasq hostapd nginx uwsgi uwsgi-plugin-python \
-    python-dev python-smbus git-core python-pip python-setuptools python-wheel
-
-
-hostname bartendro
+apt-get install -y --no-install-recommends hostapd isc-dhcp-server iptables-persistent dnsmasq \
+    nginx uwsgi uwsgi-plugin-python python-dev python-smbus git-core python-pip python-setuptools python-wheel
 
 # install the network/wifi setup files
-cp -v files/config.txt /boot
-cp -v files/sudoers /etc
-cp -v files/dnsmasq.conf /etc
-cp -v files/dnsmasq /etc
-cp -v files/resolvconf.conf /etc
+cp -v files/dhcpd.conf /etc/dhcp/dhcpd.conf
+cp -v files/isc-dhcp-server /etc/default/isc-dhcp-server
+cp -v files/wlan0 /etc/networking/interfaces.d
 cp -v files/hostapd.conf /etc/hostapd/hostapd.conf
-cp -v files/hostapd-default /etc/default/hostapd
-cp -v files/hosts /etc/hosts
-cp -v files/interfaces /etc/network/interfaces
-cp -v files/iptables.rules /etc/iptables.rules
+cp -v files/hostapd /etc/hostapd
+cp -v files/dnsmasq.conf /etc/dnsmasq.conf
 cp -v files/rc.local /etc/rc.local
-cp -v files/dhcpcd.conf /etc
-cp -v files/hostname /etc
-cp -v files/sysctl.conf /etc
+echo "DNSMASQ_EXCEPT=lo" >> /etc/default/dnsmasq
 
-# create the bartendro user if need be
+# setup the firewall
+iptables -A FORWARD -i eth0 -o wlan0 -m state --state  RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+iptables -t nat -S
+sh -c "iptables-save > /etc/iptables/rules.v4"
+
+#enable services
+systemctl unmask hostapd
+systemctl enable hostapd
+systemctl unmask isc-dhcp-server 
+systemctl enable isc-dhcp-server
+
+# create the bartendro user 
 sudo adduser -gecos 'Bartendro' --disabled-password bartendro
-sudo adduser bartendro sudo 
+sudo adduser bartendro sudo
 echo 'bartendro:hackme!' | sudo chpasswd
 
 # check out bartendro source
@@ -42,7 +45,10 @@ pip install -r /home/bartendro/bartendro/ui/requirements.txt
 cp -v files/nginx.conf /etc/nginx
 cp -v files/nginx-default /etc/nginx/sites-available/default
 cp -v files/bartendro.ini /etc/uwsgi/apps-available
-ln -fs /etc/uwsgi/apps-available/bartendro.ini /etc/uwsgi/apps-enabled/bartendro.ini 
+ln -fs /etc/uwsgi/apps-available/bartendro.ini /etc/uwsgi/apps-enabled/bartendro.ini
 
 # change the ownership of everything in the bartendro user
 chown -R bartendro:bartendro /home/bartendro
+
+echo "Now reboot, log back in and remove the pi user with:"
+echo "   sudo deluser --force --remove-home --remove-all-files pi"
