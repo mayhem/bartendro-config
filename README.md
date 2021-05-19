@@ -43,3 +43,5 @@ Finally:
 From now you can no longer log in with the standard bartendro user with password "hackme!"
 
 In theory that should be it. Your SD card should be ready to rock.
+
+TODO: remove wpasupplicant
