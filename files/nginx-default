@@ -1,9 +1,11 @@
 # Listen on all interfaces of eth0
 server {
-     root        /usr/share/nginx/www;
+     root        /usr/share/nginx/html;
      server_name bartendro bartendro.partyrobotics.com;
      access_log  /var/log/nginx/bartendro-combined.log combined;
      error_log   /var/log/nginx/bartendro-error.log notice;
+     error_page  404             /50x.html;
+     error_page  500 502 503 504 /50x.html;
      location    / {
        try_files $uri @bartendro;
      }
@@ -17,11 +19,11 @@ server {
 # the server name here is always set the "bartendro".
 server {
      listen      10.0.0.1:80;
-     root        /usr/share/nginx/www;
+     root        /usr/share/nginx/html;
      server_name bartendro bartendro.partyrobotics.com;
      access_log  /var/log/nginx/bartendro-combined.log combined;
      error_log   /var/log/nginx/bartendro-error.log notice;
-     error_page  404             /404.html;
+     error_page  404             /50x.html;
      error_page  500 502 503 504 /50x.html;
      location    / {
        try_files $uri @bartendro;

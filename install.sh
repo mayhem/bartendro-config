@@ -13,6 +13,7 @@ cp -v files/hostapd.conf /etc/hostapd/hostapd.conf
 cp -v files/hostapd /etc/hostapd
 cp -v files/dnsmasq.conf /etc/dnsmasq.conf
 cp -v files/rc.local /etc/rc.local
+cp -v files/50x.html /usr/share/nginx/html
 echo "DNSMASQ_EXCEPT=lo" >> /etc/default/dnsmasq
 
 # setup the firewall
