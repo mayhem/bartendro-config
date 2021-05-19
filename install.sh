@@ -5,7 +5,7 @@ apt-get install -y --no-install-recommends hostapd isc-dhcp-server iptables-pers
     nginx uwsgi uwsgi-plugin-python python-dev python-smbus git-core python-pip python-setuptools python-wheel
 
 # install the network/wifi setup files
-install -m 440 sudoers /etc/sudoers.d/90-bartendro
+install -m 440 files/sudoers /etc/sudoers.d/90-bartendro
 cp -v files/dhcpd.conf /etc/dhcp/dhcpd.conf
 cp -v files/isc-dhcp-server /etc/default/isc-dhcp-server
 cp -v files/wlan0 /etc/networking/interfaces.d
