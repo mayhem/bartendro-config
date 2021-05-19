@@ -9,7 +9,7 @@ cp -v files/dhcpd.conf /etc/dhcp/dhcpd.conf
 cp -v files/isc-dhcp-server /etc/default/isc-dhcp-server
 cp -v files/wlan0 /etc/networking/interfaces.d
 cp -v files/hostapd.conf /etc/hostapd/hostapd.conf
-cp -v files/hostapd /etc/hostapd/hostapd.conf
+cp -v files/hostapd /etc/hostapd
 cp -v files/dnsmasq.conf /etc/dnsmasq.conf
 cp -v files/rc.local /etc/rc.local
 echo "DNSMASQ_EXCEPT=lo" >> /etc/default/dnsmasq
@@ -50,4 +50,5 @@ ln -fs /etc/uwsgi/apps-available/bartendro.ini /etc/uwsgi/apps-enabled/bartendro
 # change the ownership of everything in the bartendro user
 chown -R bartendro:bartendro /home/bartendro
 
-echo "Now reboot, log back in and remove the pi user."
+echo "Now reboot, log back in and remove the pi user with:"
+echo "   sudo deluser --force --remove-home --remove-all-files pi"
