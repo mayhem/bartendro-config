@@ -3,16 +3,16 @@
 Deployment script for bartendro. One script should install everything needed.
 IMPORTANT: It is important to reboot right after the raspi-config command!
 
-Download and write the 2016-05-27 Raspian Jessie-list distro to an SD Card: 
-
-  https://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2016-05-31/2016-05-27-raspbian-jessie-lite.zip
+Download and write the Raspberry Pi OS Lite to an SD Card:
+   
+   https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-03-25/2021-03-04-raspios-buster-armhf-lite.zip
 
 Boot the RPi and then log in as user 'pi' with password 'raspberry'. Then:
 
 Run raspi-config:
 * Expand the filesystem
 * Set the hostname to bartendro
-* Startup: Boot into console, require password
+* Set the Wifi Country and give a dummy wifi login
 * Advanced: Disable console on serial port, enable serial port
 * Advanced: Enable I2C
 
@@ -28,11 +28,13 @@ cd bartendro-config
 sudo install.sh
 ```
 
+During the package install step, it will ask two questions about firewall files. Answer both with YES.
+
 Once done rebooting, log into the RPi with user 'bartendro' and password 'hackme!'. 
 Finally:
 
     sudo deluser --force --remove-home --remove-all-files pi
 
-From now you can no longer log in with the standard pi user. 
+From now you can no longer log in with the standard bartendro user with password "hackme!"
 
 In theory that should be it. Your SD card should be ready to rock.
