@@ -11,8 +11,9 @@ Boot the RPi and then log in as user 'pi' with password 'raspberry'. Then:
 
 Run raspi-config:
 * Expand the filesystem
+* Set the hostname to bartendro
 * Startup: Boot into console, require password
-* Advanced: Disable console on serial port
+* Advanced: Disable console on serial port, enable serial port
 * Advanced: Enable I2C
 
 Finish raspi-config by allowing it to reboot. 
