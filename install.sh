@@ -29,8 +29,6 @@ systemctl enable isc-dhcp-server
 systemctl unmask dnsmasq
 systemctl enable dnsmasq
 
-rm /etc/w
-
 # create the bartendro user 
 sudo adduser -gecos 'Bartendro' --disabled-password bartendro
 sudo adduser bartendro sudo
